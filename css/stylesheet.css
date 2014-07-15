@@ -1,0 +1,23 @@
+div {
+	/*border:1px solid black;*/
+}
+.outerContainer{
+	margin-top: 100px;
+}
+.boardContainer {
+	width: 400px;
+	margin: 0 auto;
+}
+.row1, .row2, .row3 {
+	padding: 3px;
+	
+.gameBox {
+	border-radius: 15px;
+	background-color: blue;
+	margin: 3px;
+	padding: 0px;
+	width: 100px;
+	height: 100px;
+	border: 10px solid blue;
+	display: inline-block;
+}
