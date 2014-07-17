@@ -2,19 +2,38 @@ var TicTac = angular.module('TicTacToeApp', []);
 
 TicTac.controller('TicTacController', function ($scope) {
 
-	$scope.shopName = 'loving fucking coffee';
+	$scope.boardName = 'tic tac fucking toe';
 
-	$scope.toasty = function(roast){
-		if(roast.roastLevel > 5){
-			return true;
-		} else {
-			return false;
-		}
-	};
+	
 	$scope.gameBoard = [
-		{1:1},{1:2},{1:3},
-		{2:1},{2:2},{2:3},
-		{3:1},{3:2},{3:3}
+		{	row: 1,
+			column: 1,
+			uniqueId: "detroit"
+			},
+		{	row: 1,
+			column: 2
+		},
+		{	row: 1,
+			column: 3
+		},
+		{	row: 2,
+			column: 1
+		},
+		{	row: 2,
+			column: 2
+		},
+		{	row: 2,
+			column: 3
+		},
+		{	row: 3,
+			column: 1
+		},
+		{	row: 3,
+			column: 2
+		},
+		{	row: 3,
+			column: 3
+		}
 	]
 
 

@@ -1,26 +1,31 @@
 <!DOCTYPE html>
-<html ng-app"TicTacToeApp">
+<html ng-app="TicTacToeApp">
 <head>
 	<title>Tic Tac Toe</title>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
-	<!-- put the god damn angular app here -->
+	<script src="js/angular.min.js"></script>
 	<script src="js/app.js"></script>
 </head>
-<body>
+<body ng-controller="TicTacController">
 <div class="outerContainer">
+	<div class="title">
+		<h1>{{boardName}}</h1>
+	</div>
 	<div class="boardContainer">
-		<div class="row1">
-			<div class="gameBox" ng-repeat="r1 in gameBoard">{{r1}}</div>
+		<div ng-class="row1" ng-repeat="r1 in gameBoard | limitTo:r1.column=3">
+			<div class="gameBox">{{r1.uniqueId}}</div>
 		</div>
-		<div class="row2">
-			<div class="gameBox" ng-repeat="r2 in gameBoard[4]">box</div>
+		<div ng-class="row2" ng-repeat="r2 in gameBoard | limitTo:r2.column=3">
+			<div class="gameBox">box</div>
 		</div>
-		<div class="row3">
-			<div class="gameBox" ng=repeat="r3 in gameBoard[7]">bOx</div>
-		</div>
+			<div ng-class="row3" ng-repeat="r3 in gameBoard | limitTo:r3.column=3">
+				<div class="gameBox">bOx</div>
+			</div>
 	</div>
 </div>
 
 </body>
+
+</html>
 
