@@ -11,21 +11,19 @@
 <div class="outerContainer">
 	<div class="title">
 		<h1>{{boardName}}</h1>
+		<h1 ng-bind="name"></h1>
 	</div>
 	<div class="boardContainer">
-		<div ng-class="row1" ng-repeat="r1 in gameBoard | limitTo:r1.column=3">
-			<div class="gameBox">{{r1.uniqueId}}</div>
+		<div class="row" ng-repeat="number in [1,2,3]">
+			<div class="gameBox" ng-repeat="n in [1,2,3]">{{gameBoard.row}}</div>
 		</div>
-		<div ng-class="row2" ng-repeat="r2 in gameBoard | limitTo:r2.column=3">
-			<div class="gameBox">box</div>
-		</div>
-			<div ng-class="row3" ng-repeat="r3 in gameBoard | limitTo:r3.column=3">
-				<div class="gameBox">bOx</div>
-			</div>
 	</div>
+
+	
 </div>
 
 </body>
 
 </html>
 
+<!-- row:{{number}} column:{{n}} -->
