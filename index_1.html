@@ -13,7 +13,7 @@
 	<div class="boardContainer" >
 
 		<div ng-class="row" ng-repeat="row in board" >
-			<div class="gameBox" ng-repeat="field in row track by $index" ng-click="takefield($parent.$index, $index, 'x')">{{field}}</div>
+			<div class="gameBox" ng-repeat="field in row track by $index" ng-click="takefield($parent.$index, $index)">{{field}}</div>
 		</div>
 	</div>
 	<button ng-hide="boardcreated" ng-click="createBoard(3)">Create Game Board</button>

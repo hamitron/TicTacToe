@@ -27,7 +27,7 @@ angular.module('TicTacToeApp.controllers', []).controller('gameCtrl', ['$scope',
       }
       $scope.board.push(temp);
     }
-
+    console.log($scope.board);
     $scope.boardcreated = true;
   };
   $scope.playcounter = 0;
@@ -36,11 +36,12 @@ angular.module('TicTacToeApp.controllers', []).controller('gameCtrl', ['$scope',
     alert('I am at row ' + p + ', column ' + i + 'and my value is: ' + $scope.board[p][i]);
   }
 
-  $scope.takefield = function(x, y, symbol) {
-    if ($scope.playcounter == 0) {
-    	symbol == "X"
+  $scope.takefield = function(x, y) {
+    var symbol = "X";
+    if ($scope.playcounter % 2 == 0 ) {
+    	symbol = "X"
     } else {
-    	symbol == "O"
+    	symbol = "O"
     }
     $scope.board[x][y] = symbol,
     $scope.playcounter += 1;
