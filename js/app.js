@@ -1,23 +1,18 @@
-'use strict';
-
 angular.module('TicTacToeApp', [
   'TicTacToeApp.controllers',
 ]);
 
-'use strict';
-
-
-
-angular.module('TicTacToeApp.controllers', []).controller('gameCtrl', ['$scope', function($scope) {
+angular.module('TicTacToeApp.controllers', [])
+.controller('gameCtrl', ['$scope', function($scope) {
   $scope.createBoard = function(size, symbol) {
     // create a tic tac toe board using the argument size for width and height
     // if size is not set, use a 3 by 3 board
-    // standard symbol is a smiley
+
     if (size == null) {
       size = 3;
     }
     if (symbol == null) {
-      symbol = '☺';
+      symbol = ' ';
     }
     $scope.board = [];
     for(var i = 0; i < size; ++i) {
@@ -30,24 +25,28 @@ angular.module('TicTacToeApp.controllers', []).controller('gameCtrl', ['$scope',
     console.log($scope.board);
     $scope.boardcreated = true;
   };
-  $scope.playcounter = 0;
 
-  $scope.tellmeaboutyou = function(p, i) {
-    alert('I am at row ' + p + ', column ' + i + 'and my value is: ' + $scope.board[p][i]);
-  }
+  $scope.playcounter = 0;
+  $scope.player1 = false;
+  $scope.player2 = false;
 
   $scope.takefield = function(x, y) {
     var symbol = "X";
     if ($scope.playcounter % 2 == 0 ) {
     	symbol = "X"
+      $scope.player1 = true;
+
+
     } else {
     	symbol = "O"
     }
-    $scope.board[x][y] = symbol,
+
+    $scope.board[x][y] = symbol;
+    
     $scope.playcounter += 1;
   }
+
+
+  window.onload = $scope.createBoard(3);
+  
 }]);
-
-
-//make play counter
-//
