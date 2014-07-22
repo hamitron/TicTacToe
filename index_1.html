@@ -2,23 +2,22 @@
 <html ng-app="TicTacToeApp">
 <head>
 	<title>Tic Tac Toe</title>
+	<meta charset="UTF-8"/>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css">
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
 	<script src="js/angular.min.js"></script>
 	<script src="js/app.js"></script>
 </head>
-<body ng-controller="TicTacController">
+<body ng-controller="gameCtrl">
 <div class="outerContainer">
-	<div class="title">
-		<h1>{{boardName}}</h1>
-		<h1 ng-bind="name"></h1>
-	</div>
 	<div class="boardContainer" >
-		<div class="row" ng-repeat="number in [1,2,3]" >
-			<div class="gameBox" ng-repeat="n in [1,2,3]"><p></p></div>
+
+		<div ng-class="row" ng-repeat="row in board" >
+			<div class="gameBox" ng-repeat="field in row track by $index" ng-click="takefield($parent.$index, $index, 'x')">{{field}}</div>
 		</div>
 	</div>
-
+	<button ng-hide="boardcreated" ng-click="createBoard(3)">Create Game Board</button>
+	<div> <p>{{playcounter}}</p>
 </div>
 
 </body>
