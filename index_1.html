@@ -5,7 +5,9 @@
 	<meta charset="UTF-8"/>
 	<link rel="stylesheet" type="text/css" href="css/normalize.css"/>
 	<link rel="stylesheet" type="text/css" href="css/stylesheet.css"/>
+	<script src="https://cdn.firebase.com/js/client/1.0.17/firebase.js"></script>
 	<script src="js/angular.min.js"></script>
+	<script src="https://cdn.firebase.com/libs/angularfire/0.7.1/angularfire.min.js"></script>
 	<script src="js/app.js"></script>
 </head>
 <body ng-controller="gameCtrl">
@@ -13,6 +15,15 @@
 <div class="outerContainer">
 
 <div class="boardContainer" >
+	<div class="coverAll" ng-hide="xyName">
+		<h1> WELCOME TO TIC-TAC-TOE</h1>
+		<h2>Please Enter Your Names</h2>
+		<form ng-submit="addNames(xName, yName)">
+			<input type="text" placeholder="Player X" ng-model="xName">
+			<input type="text" placeholder="Player Y" ng-model="yName">
+			<input class="btn-primary" type="submit" placeholder="Go!" value="add">
+		</form>
+	</div>
 	<div class="titlebox"> <h1> TIC TAC TOE!!</h1></div>
 		<div class="row" ng-repeat="cell in boardArray" >
 			<div class="gameBox"
@@ -21,8 +32,7 @@
 			</div>
 		</div>
 		<div class="sidebar">
-			<h1>Current Play: {{playcounter}}</h1>
-			<p>{{player1}} | {{player2}}</p>
+			<h2>Player's Turn <span ng-hide="oTurn">{{playerXName}}</span><span ng-hide="xTurn" >{{playerOName}}</span></h2>
 		</div>
 	</div>
 	
