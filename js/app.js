@@ -21,7 +21,6 @@ $scope.createBoard = function(size) {
   {status: "H", idNum:7, chosen: false}, 
   {status: "I", idNum:8, chosen: false}
   ];
-
 };
 
   //These arrays hold the values of chosen cells
@@ -32,9 +31,9 @@ $scope.createBoard = function(size) {
 
 $scope.whosTurn = function(){
   if ($scope.playcounter % 2 == 0){
-    $scope.oTurn = false;
+    $scope.oTurn = true;
   } else {
-        $scope.oTurn = true;
+        $scope.oTurn = false;
   }
 };
 
@@ -67,13 +66,15 @@ $scope.addNames = function(xName, yName){
         $scope.playcounter += 1;
         console.log(thisCell.idNum);
     }  
-    $scope.whosTurn();
+    
   } ;
 
 
 
 
 $scope.winScenario = function(playerId) {
+    $scope.whosTurn();
+
     if(playerId == 5){
       if($scope.playcounter %2 ==0){
         console.log("X WINS")
