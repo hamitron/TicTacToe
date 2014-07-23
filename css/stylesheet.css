@@ -1,5 +1,4 @@
 div {
-	/*border:1px solid black;*/
 }
 h1 {
 	font-size: 15px;
@@ -12,12 +11,10 @@ h1 {
 	width: 400px;
 	margin: 0 auto;
 }
-.row {	padding: 0px;
-	}
-	
+
 .gameBox {
 	border-radius: 15px;
-	margin: 3px;
+	margin: 5px;
 	padding: 0px;
 	width: 100px;
 	height: 100px;
@@ -25,9 +22,18 @@ h1 {
 	float: left;
 }
 .playerX	{
-	background:url("../svg/x_1.svg")
+	background:url("../svg/x_1.svg");
 }
 
 .playerY {
 	background:url("../svg/o.svg")
+}
+.sidebar {
+	border:1px solid blue;
+	float:right;
+}
+
+.titlebox {
+	text-align: center;
+	margin:0 auto;
 }

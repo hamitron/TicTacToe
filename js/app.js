@@ -14,37 +14,44 @@ $scope.createBoard = function(size) {
     }
 
  $scope.boardArray = [
-  {status: "A", idNum:0 }, 
-  {status: "B", idNum:1 }, 
-  {status: "C", idNum:2 }, 
-  {status: "D", idNum:3 }, 
-  {status: "E", idNum:4 }, 
-  {status: "F", idNum:5 }, 
-  {status: "G", idNum:6 }, 
-  {status: "H", idNum:7 }, 
-  {status: "I", idNum:8 }
-  ]  ;
+  {status: "A", idNum:0, chosen: false}, 
+  {status: "B", idNum:1, chosen: false}, 
+  {status: "C", idNum:2, chosen: false}, 
+  {status: "D", idNum:3, chosen: false}, 
+  {status: "E", idNum:4, chosen: false}, 
+  {status: "F", idNum:5, chosen: false}, 
+  {status: "G", idNum:6, chosen: false}, 
+  {status: "H", idNum:7, chosen: false}, 
+  {status: "I", idNum:8, chosen: false}
+  ];
 
 };
-$scope.player1 = [];
-$scope.player2 = [];
+$scope.player1 = new Array;
+$scope.player2 = new Array;
 
 $scope.playcounter = 0;
 
   $scope.playerPicks = function(thisCell) {
-    if ($scope.playcounter % 2 == 0){
-      thisCell.status = "X" ;
-      $scope.player1.push(thisCell.idNum);
-      $scope.winScenario(thisCell.idNum);
-
+   // determines if space has already been chosen or not.  If chosen it adds 0 to the playcounter.
+    if (thisCell.chosen == true){
+      $scope.playcounter +=0;
+      
     } else {
-      thisCell.status = "O";
-      $scope.player2.push(thisCell.idNum);
-      $scope.winScenario(thisCell.idNum);
-    }
-      $scope.playcounter += 1;
-      console.log(thisCell.idNum);
-    
+      if ($scope.playcounter % 2 == 0){
+        thisCell.status = "X" ;
+        thisCell.chosen = true;
+        $scope.player1.push(thisCell.idNum);
+        $scope.winScenario(thisCell.idNum);
+
+      } else {
+        thisCell.status = "O";
+        thisCell.chosen = true;
+        $scope.player2.push(thisCell.idNum);
+        $scope.winScenario(thisCell.idNum);
+      }
+        $scope.playcounter += 1;
+        console.log(thisCell.idNum);
+    }  
   } ;
 
 
