@@ -31,16 +31,11 @@ $scope.createBoard = function(size) {
   $scope.playcounter = 0;
 
 $scope.whosTurn = function(){
-  // $scope.xTurn = false; // x always starts
-  // $scope.oTurn = false; // o is false, binding two divs with this.
   if ($scope.playcounter % 2 == 0){
-    $scope.xTurn = false;
-    $scope.oTurn = true;
+    $scope.oTurn = false;
   } else {
-        $scope.oTurn = false;
-        $scope.xTurn = true;
+        $scope.oTurn = true;
   }
-  console.log("x: "+ $scope.xTurn) ; 
 };
 
 $scope.addNames = function(xName, yName){

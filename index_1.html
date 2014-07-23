@@ -20,7 +20,7 @@
 		<h2>Please Enter Your Names</h2>
 		<form ng-submit="addNames(xName, yName)">
 			<input type="text" placeholder="Player X" ng-model="xName">
-			<input type="text" placeholder="Player Y" ng-model="yName">
+			<input type="text" placeholder="Player O" ng-model="yName">
 			<input class="btn-primary" type="submit" placeholder="Go!" value="add">
 		</form>
 	</div>
@@ -32,8 +32,8 @@
 			</div>
 		</div>
 		<div class="sidebar">
-			<h2>Player's Turn: <span ng-init="oTurn" ng-show="oTurn" ng-hide="xTurn">{{playerXName}}</span>
-			<span ng-show="xTurn" ng-hide="oTurn">{{playerOName}}</span>
+			<h2>Player's Turn: <span ng-hide="oTurn">{{playerXName}}</span>
+			<span ng-show="oTurn">{{playerOName}}</span>
 			</h2>
 		</div>
 	</div>
