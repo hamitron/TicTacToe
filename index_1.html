@@ -15,10 +15,11 @@
 		<div class="row" ng-repeat="cell in boardArray" >
 			<div class="gameBox"
 			ng-click="playerPicks(cell)"
-			ng-class="{playerX: cell.status=='X', playerY: cell.status =='O'}">{{cell.status}}
+			ng-class="{playerX: cell.status=='X', playerY: cell.status =='O'}">{{cell.idNum}}
 							</div>
 		</div>
 	</div>
+	<div><h1>Current Play: {{playcounter}}</h1></div>
 	<div>
 </div>
 

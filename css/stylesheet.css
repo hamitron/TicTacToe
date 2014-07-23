@@ -24,9 +24,10 @@ h1 {
 	border: 10px solid darkgrey;
 	float: left;
 }
-.playerX	{background-color:violet;
+.playerX	{
+	background:url("../svg/x_1.svg")
 }
 
 .playerY {
-	background-color: green;
+	background:url("../svg/o.svg")
 }
