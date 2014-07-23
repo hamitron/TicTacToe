@@ -31,15 +31,17 @@ $scope.createBoard = function(size) {
   $scope.playcounter = 0;
 
 $scope.whosTurn = function(){
-  $scope.xTurn = true; // x always starts
-  $scope.oTurn = false; // o is false, binding two divs with this.
+  // $scope.xTurn = false; // x always starts
+  // $scope.oTurn = false; // o is false, binding two divs with this.
   if ($scope.playcounter % 2 == 0){
     $scope.xTurn = false;
     $scope.oTurn = true;
-      } else {
+  } else {
         $scope.oTurn = false;
         $scope.xTurn = true;
-}};
+  }
+  console.log("x: "+ $scope.xTurn) ; 
+};
 
 $scope.addNames = function(xName, yName){
   console.log(xName, yName);
@@ -70,6 +72,7 @@ $scope.addNames = function(xName, yName){
         $scope.playcounter += 1;
         console.log(thisCell.idNum);
     }  
+    $scope.whosTurn();
   } ;
 
 

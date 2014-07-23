@@ -32,7 +32,9 @@
 			</div>
 		</div>
 		<div class="sidebar">
-			<h2>Player's Turn <span ng-hide="oTurn">{{playerXName}}</span><span ng-hide="xTurn" >{{playerOName}}</span></h2>
+			<h2>Player's Turn: <span ng-init="oTurn" ng-show="oTurn" ng-hide="xTurn">{{playerXName}}</span>
+			<span ng-show="xTurn" ng-hide="oTurn">{{playerOName}}</span>
+			</h2>
 		</div>
 	</div>
 	
