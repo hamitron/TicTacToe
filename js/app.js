@@ -3,6 +3,12 @@ var TTAPP = angular.module('TicTacToeApp', ['firebase']);
 TTAPP.controller('gameCtrl', function($scope, $firebase) {
 
 
+$scope.testBoard = [
+                    [" "," "," "],
+                    [" "," "," "],
+                    [" "," "," "]
+];
+
 $scope.createBoard = function(size) {
     // create a tic tac toe board using the argument size for width and height
     // if size is not set, use a 3 by 3 board
@@ -11,15 +17,15 @@ $scope.createBoard = function(size) {
     }
 
  $scope.boardArray = [
-  {status: "A", idNum:0, chosen: false}, 
-  {status: "B", idNum:1, chosen: false}, 
-  {status: "C", idNum:2, chosen: false}, 
-  {status: "D", idNum:3, chosen: false}, 
-  {status: "E", idNum:4, chosen: false}, 
-  {status: "F", idNum:5, chosen: false}, 
-  {status: "G", idNum:6, chosen: false}, 
-  {status: "H", idNum:7, chosen: false}, 
-  {status: "I", idNum:8, chosen: false}
+  {status: "A", idNum:0, idx:0, idy: 0, chosen: false}, 
+  {status: "B", idNum:1, idx:1, idy: 0, chosen: false}, 
+  {status: "C", idNum:2, idx:2, idy: 0, chosen: false}, 
+  {status: "D", idNum:3, idx:0, idy: 1, chosen: false}, 
+  {status: "E", idNum:4, idx:1, idy: 1, chosen: false}, 
+  {status: "F", idNum:5, idx:2, idy: 1, chosen: false}, 
+  {status: "G", idNum:6, idx:0, idy: 2, chosen: false}, 
+  {status: "H", idNum:7, idx:1, idy: 2, chosen: false}, 
+  {status: "I", idNum:8, idx:2, idy: 2, chosen: false}
   ];
 };
 
@@ -59,12 +65,18 @@ $scope.addNames = function(xName, yName){
       if ($scope.playcounter % 2 == 0){
         thisCell.status = "X" ;
         thisCell.chosen = true;
-        $scope.winScenario(thisCell.idNum);
+        $scope.testBoard[thisCell.idx][thisCell.idy] = "X";
+        $scope.winScenario(thisCell.idx, thisCell.idy);
+        console.log("X pushed to " + thisCell.idx +" "+ thisCell.idy)
+        
 
       } else {
         thisCell.status = "O";
         thisCell.chosen = true;
-        $scope.winScenario(thisCell.idNum);
+        $scope.testBoard[thisCell.idx][thisCell.idy] = "O";
+        $scope.winScenario(thisCell.idx, thisCell.idy);
+        console.log("O pushed to " + thisCell.idx +" "+ thisCell.idy)
+        
       }
         $scope.playcounter += 1;
     }  
@@ -74,14 +86,23 @@ $scope.addNames = function(xName, yName){
 
 
 
-$scope.winScenario = function(x) {
- if ($scope.playcounter >=2){
- if (($scope.boardArray[x].chosen == true && $scope.boardArray[x+1].chosen == true && $scope.boardArray[x+2].chosen == true) &&
-   ($scope.boardArray[x].status == "X" && $scope.boardArray[x+1].status == "X" && $scope.boardArray[x+2].status == "X"))
-  console.log("omg")
- }
+$scope.winScenario = function(x,y) {
 
-}
+ // if ($scope.playcounter >=2){
+  var c = 0;
+  var r = 0;
+     if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == "XXX") {
+      console.log("yayay");
+     } else if (($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == "XXX"){
+     console.log("yay"); 
+   }
+    }
+
+// }
+
+
+
+
 
 
 
