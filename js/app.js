@@ -24,8 +24,6 @@ $scope.createBoard = function(size) {
 };
 
   //These arrays hold the values of chosen cells
-  $scope.player1Array = new Array;
-  $scope.player2Array = new Array;
   //counts up after every space choice. except choices that are already occupied
   $scope.playcounter = 0;
 
@@ -35,10 +33,16 @@ $scope.whosTurn = function(){
   } else {
         $scope.oTurn = false;
   }
+//hides player turn container.  will replace with winning player.
+   if ($scope.playcounter < 8){
+      $scope.gameEnd = false;
+    } else {
+      $scope.gameEnd = true;
+    }
+    
 };
 
 $scope.addNames = function(xName, yName){
-  console.log(xName, yName);
   $scope.playerXName = xName;
   $scope.playerOName = yName;
   $scope.xyName = true; // this binds with nghide to hide the name box.
@@ -47,6 +51,7 @@ $scope.addNames = function(xName, yName){
 
   $scope.playerPicks = function(thisCell) {
    // determines if space has already been chosen or not.  If chosen it adds 0 to the playcounter.
+    $scope.whosTurn();
     if (thisCell.chosen == true){
       $scope.playcounter +=0;
 
@@ -54,17 +59,14 @@ $scope.addNames = function(xName, yName){
       if ($scope.playcounter % 2 == 0){
         thisCell.status = "X" ;
         thisCell.chosen = true;
-        $scope.player1Array.push(thisCell.idNum);
         $scope.winScenario(thisCell.idNum);
 
       } else {
         thisCell.status = "O";
         thisCell.chosen = true;
-        $scope.player2Array.push(thisCell.idNum);
         $scope.winScenario(thisCell.idNum);
       }
         $scope.playcounter += 1;
-        console.log(thisCell.idNum);
     }  
     
   } ;
@@ -72,19 +74,16 @@ $scope.addNames = function(xName, yName){
 
 
 
-$scope.winScenario = function(playerId) {
-    $scope.whosTurn();
+$scope.winScenario = function(x) {
+ if ($scope.playcounter >=2){
+ if (($scope.boardArray[x].chosen == true && $scope.boardArray[x+1].chosen == true && $scope.boardArray[x+2].chosen == true) &&
+   ($scope.boardArray[x].status == "X" && $scope.boardArray[x+1].status == "X" && $scope.boardArray[x+2].status == "X"))
+  console.log("omg")
+ }
 
-    if(playerId == 5){
-      if($scope.playcounter %2 ==0){
-        console.log("X WINS")
-      }else {
-        console.log("O Wins")
-      }
-      console.log("WINNER");
-    }
-  }
-  
+}
+
+
 
 window.onload = $scope.createBoard(3);
   

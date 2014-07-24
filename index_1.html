@@ -31,7 +31,7 @@
 			ng-class="{playerX: cell.status=='X', playerY: cell.status =='O'}">
 			</div>
 		</div>
-		<div class="sidebar">
+		<div class="sidebar" ng-hide="gameEnd">
 			<h2>Player's Turn: <span ng-hide="oTurn">{{playerXName}}</span>
 			<span ng-show="oTurn">{{playerOName}}</span>
 			</h2>
