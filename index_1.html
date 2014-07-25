@@ -12,33 +12,36 @@
 </head>
 <body ng-controller="gameCtrl">
 
-<div class="outerContainer">
 
-<div class="boardContainer" >
-	<div class="coverAll" ng-hide="xyName">
-		<h1> WELCOME TO TIC-TAC-TOE</h1>
-		<h2>Please Enter Your Names</h2>
-		<form ng-submit="addNames(xName, yName)">
-			<input type="text" placeholder="Player X" ng-model="xName">
-			<input type="text" placeholder="Player O" ng-model="yName">
-			<input class="btn-primary" type="submit" placeholder="Go!" value="add">
-		</form>
-	</div>
+
+<div class="outerContainer">
 	<div class="titlebox"> <h1> TIC TAC TOE!!</h1></div>
-		<div class="row" ng-repeat="cell in boardArray" >
-			<div class="gameBox"
-			ng-click="playerPicks(cell)"
-			ng-class="{playerX: cell.status=='X', playerY: cell.status =='O'}">
+	
+		<div class="sidebar" ng-hide="gameEnd" >
+				<h2>Player's Turn: </h2>
+				<h3><span ng-hide="oTurn">{{playerXName}}</span></h3>
+				<h3><span ng-show="oTurn">{{playerOName}}</span></h3>
+		</div> 
+		
+		<div class="coverAll" ng-hide="xyName">
+			<h2>Please Enter Your Names</h2>
+			<form ng-submit="addNames(xName, yName)">
+				<input type="text" placeholder="Player X" ng-model="xName">
+				<input type="text" placeholder="Player O" ng-model="yName">
+				<input class="btn-primary" type="submit" placeholder="Go!" value="add">
+			</form>
+		</div>
+
+		<div class="boardContainer">
+			<div class="row" ng-repeat="cell in boardArray">
+				<div class="gameBox"
+					 ng-click="playerPicks(cell)"
+					 ng-class="{playerX: cell.status=='X', playerY: cell.status =='O'}">
+				</div> 
 			</div>
 		</div>
-		<div class="sidebar" ng-hide="gameEnd">
-			<h2>Player's Turn: <span ng-hide="oTurn">{{playerXName}}</span>
-			<span ng-show="oTurn">{{playerOName}}</span>
-			</h2>
-		</div>
-	</div>
-	
-	<div>
+
+	</div> 
 </div>
 
 </body>

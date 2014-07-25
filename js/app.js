@@ -1,8 +1,11 @@
 var TTAPP = angular.module('TicTacToeApp', ['firebase']);
 
 TTAPP.controller('gameCtrl', function($scope, $firebase) {
-var ticTacFire = new Firebase("https://tickitytackityt0.firebaseio.com/")
-$scope.tacFire = $firebase(ticTacFire);
+
+
+var TTTRef = new Firebase("https://tickitytackityt0.firebaseio.com") ;
+$scope.fireBaseBoard = $firebase(new Firebase("https://tickitytackityt0.firebaseio.com" + "/testBoard"));
+$scope.firePlayerNames = $firebase(new Firebase("https://tickitytackityt0.firebaseio.com" + "/playerNames"));
 
 // use this instead of boardArray for firebase binding.  make a watch feature on this to change the boardArray.
 $scope.testBoard = [
@@ -55,7 +58,7 @@ $scope.addNames = function(xName, yName){
   $scope.playerOName = yName;
   $scope.xyName = true; // this binds with nghide to hide the name box.
   //Firebase goodness
-  $scope.tacFire.$set($scope.playerXName + " " + $scope.playerOName);
+  $scope.firePlayerNames.$set({PlayerX: $scope.playerXName, PlayerO: $scope.playerOName});
 };
 
 
@@ -83,7 +86,7 @@ $scope.addNames = function(xName, yName){
         $scope.playcounter += 1;
     }  
       // idk if this is right
-      $scope.tacFire.$set($scope.testBoard);
+      $scope.fireBaseBoard.$set($scope.testBoard);
   } ;
 
 
