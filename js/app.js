@@ -59,7 +59,7 @@ $scope.addNames = function(xName, yName){
    // determines if space has already been chosen or not.  If chosen it adds 0 to the playcounter.
     $scope.whosTurn();
     if (thisCell.chosen == true){
-      $scope.playcounter +=0;
+      console.log("Can't pick that one, " + thisCell.status + " is already there.");
 
     } else {
       if ($scope.playcounter % 2 == 0){
@@ -67,7 +67,7 @@ $scope.addNames = function(xName, yName){
         thisCell.chosen = true;
         $scope.testBoard[thisCell.idx][thisCell.idy] = "X";
         $scope.winScenario(thisCell.idx, thisCell.idy);
-        console.log("X pushed to " + thisCell.idx +" "+ thisCell.idy)
+        // console.log("X pushed to " + thisCell.idx +" "+ thisCell.idy)
         
 
       } else {
@@ -75,7 +75,7 @@ $scope.addNames = function(xName, yName){
         thisCell.chosen = true;
         $scope.testBoard[thisCell.idx][thisCell.idy] = "O";
         $scope.winScenario(thisCell.idx, thisCell.idy);
-        console.log("O pushed to " + thisCell.idx +" "+ thisCell.idy)
+        // console.log("O pushed to " + thisCell.idx +" "+ thisCell.idy)
         
       }
         $scope.playcounter += 1;
@@ -105,6 +105,8 @@ $scope.winScenario = function(x,y) {
   } else if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerXWins ||
               ($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerOWins){ 
                 console.log("Diag Win");
+  } else if ($scope.playcounter == 8) {
+                console.log("Cat's Game");
   }
 }
 // }
