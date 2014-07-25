@@ -1,8 +1,10 @@
 var TTAPP = angular.module('TicTacToeApp', ['firebase']);
 
 TTAPP.controller('gameCtrl', function($scope, $firebase) {
+var ticTacFire = new Firebase("https://tickitytackityt0.firebaseio.com/")
+$scope.tacFire = $firebase(ticTacFire);
 
-
+// use this instead of boardArray for firebase binding.  make a watch feature on this to change the boardArray.
 $scope.testBoard = [
                     [" "," "," "],
                     [" "," "," "],
@@ -52,6 +54,8 @@ $scope.addNames = function(xName, yName){
   $scope.playerXName = xName;
   $scope.playerOName = yName;
   $scope.xyName = true; // this binds with nghide to hide the name box.
+  //Firebase goodness
+  $scope.tacFire.$set($scope.playerXName + " " + $scope.playerOName);
 };
 
 
@@ -66,52 +70,93 @@ $scope.addNames = function(xName, yName){
         thisCell.status = "X" ;
         thisCell.chosen = true;
         $scope.testBoard[thisCell.idx][thisCell.idy] = "X";
-        $scope.winScenario(thisCell.idx, thisCell.idy);
+        $scope.winScenario();
         // console.log("X pushed to " + thisCell.idx +" "+ thisCell.idy)
-        
-
-      } else {
-        thisCell.status = "O";
-        thisCell.chosen = true;
-        $scope.testBoard[thisCell.idx][thisCell.idy] = "O";
-        $scope.winScenario(thisCell.idx, thisCell.idy);
-        // console.log("O pushed to " + thisCell.idx +" "+ thisCell.idy)
-        
+        } else {
+          thisCell.status = "O";
+          thisCell.chosen = true;
+          $scope.testBoard[thisCell.idx][thisCell.idy] = "O";
+          $scope.winScenario();
+          // console.log("O pushed to " + thisCell.idx +" "+ thisCell.idy)
+          
       }
         $scope.playcounter += 1;
     }  
-    
+      // idk if this is right
+      $scope.tacFire.$set($scope.testBoard);
   } ;
 
 
-
-
 $scope.winScenario = function(x,y) {
- 
+  if (x == null) {
+    var c = 0
+  } else {
+    x = c
+  }
+  if (y == null) {
+    var r = 0;
+  } else {
+    y = r;
+  };
+
  // if ($scope.playcounter >=2){
-  var c = 0;
-  var r = 0;
+
   var playerXWins = "XXX";
   var playerOWins = "OOO";
 
-  //checks row one for winner
-   if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerXWins ||
-      ($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerOWins)  {
-        console.log("we have a winner")
-  // checks column one for winner
-   } else if (($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerXWins ||
-              ($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerOWins){
-                console.log("Veritcal winner"); 
-  } else if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerXWins ||
-              ($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerOWins){ 
-                console.log("Diag Win");
-  } else if ($scope.playcounter == 8) {
-                console.log("Cat's Game");
-  }
+  //checks rows for winner
+            if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerXWins ||
+               ( $scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerOWins)  {
+                console.log("we have a winner")
+
+      } else if (($scope.testBoard[c][r+1] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+1]) == playerXWins ||
+                ( $scope.testBoard[c][r+1] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+1]) == playerOWins) {
+                  console.log("we have a winner row 2");
+
+      } else if (($scope.testBoard[c][r+2] + $scope.testBoard[c+1][r+2] + $scope.testBoard[c+2][r+2]) == playerXWins ||
+                ( $scope.testBoard[c][r+2] + $scope.testBoard[c+1][r+2] + $scope.testBoard[c+2][r+2]) == playerOWins) {
+                  console.log("we have a winner row 3");
+
+
+  // checks columns for winner
+      } else if (($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerXWins ||
+                ( $scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerOWins){
+                  console.log("Veritcal winner"); 
+
+      } else if (($scope.testBoard[c+1][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+1][r+2]) == playerXWins ||
+                ( $scope.testBoard[c+1][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+1][r+2]) == playerOWins) {
+                  console.log("Vertical winner column 2");
+
+      } else if (($scope.testBoard[c+2][r] + $scope.testBoard[c+2][r+1] + $scope.testBoard[c+2][r+2]) == playerXWins ||
+                ( $scope.testBoard[c+2][r] + $scope.testBoard[c+2][r+1] + $scope.testBoard[c+2][r+2]) == playerOWins) {
+                  console.log("Vertical winner column 3");
+
+
+                // checks diag for winner
+      } else if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerXWins ||
+                ( $scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerOWins){ 
+                  console.log("DIagWIN");
+
+      } else if (($scope.testBoard[c+2][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c][r+2]) == playerXWins ||
+                ( $scope.testBoard[c+2][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c][r+2]) == playerOWins){ 
+                  console.log("Diag Win");
+
+                  // cats game
+      } else if ( $scope.playcounter == 8) {
+
+                  console.log("Cat's Game");
+    };
+    
+
+
+  
+
 }
 // }
 
+$scope.showBoardWinner = function(winner) {
 
+}
 
 
 
