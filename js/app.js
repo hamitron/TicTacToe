@@ -87,17 +87,26 @@ $scope.addNames = function(xName, yName){
 
 
 $scope.winScenario = function(x,y) {
-
+ 
  // if ($scope.playcounter >=2){
   var c = 0;
   var r = 0;
-     if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == "XXX") {
-      console.log("yayay");
-     } else if (($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == "XXX"){
-     console.log("yay"); 
-   }
-    }
+  var playerXWins = "XXX";
+  var playerOWins = "OOO";
 
+  //checks row one for winner
+   if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerXWins ||
+      ($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerOWins)  {
+        console.log("we have a winner")
+  // checks column one for winner
+   } else if (($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerXWins ||
+              ($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerOWins){
+                console.log("Veritcal winner"); 
+  } else if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerXWins ||
+              ($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerOWins){ 
+                console.log("Diag Win");
+  }
+}
 // }
 
 
