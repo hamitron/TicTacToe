@@ -2,9 +2,11 @@ body {
 	background-color: lightblue;
 }
 div {
+	text-align: center;
+	font-family: 'Anton', sans-serif;
 }
 h1 {
-	font-size: 15px;
+	font-size: 35px;
 }
 
 .outerContainer{
@@ -17,6 +19,7 @@ h1 {
 
 .gameBox {
 	border: 1px solid darkgrey;
+	border-bottom: 5px solid darkgrey;
 	border-radius: 25px 25px 25px 25px;
 	margin: 3px;
 	padding: 0px;
@@ -28,13 +31,15 @@ h1 {
 .playerX	{
 	background:url("../svg/x_1.svg");
 	background-color: rgba(66,119,153,0.7);
-	border: 3px solid darkgrey;
+	border: 2px solid darkgrey;
+	border-bottom:5px solid darkgrey;
 }
 
 .playerY {
 	background:url("../svg/o.svg");
 	background-color: rgba(204,149,149,0.7);
-	border: 3px solid darkgrey;
+	border: 2px solid darkgrey;
+	border-bottom:5px solid darkgrey;
 }
 .sidebar {
 	border:1px solid blue;
@@ -45,7 +50,8 @@ h1 {
 .titlebox {
 	text-align: center;
 	margin:0 auto;
-	background-color: darkgrey;
+	background-color: lightgrey;
+	border-bottom: 5px solid darkgrey;
 }
 
 .coverAll {
