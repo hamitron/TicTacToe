@@ -1,5 +1,7 @@
+body {
+	background-color: lightblue;
+}
 div {
-	border:1px solid black;
 }
 h1 {
 	font-size: 15px;
@@ -9,27 +11,30 @@ h1 {
 	margin-top: 100px;
 }
 .boardContainer {
-	width: 420px;
+	width: 600px;
 	margin: 0 auto;
 }
 
 .gameBox {
-	border-radius: 15px;
-	margin: 5px;
+	border: 1px solid darkgrey;
+	border-radius: 25px 25px 25px 25px;
+	margin: 3px;
 	padding: 0px;
-	width: 80px;
-	height: 80px;
-	border: 10px solid darkgrey;
+	width: 180px;
+	height: 180px;
+	background-color: rgba(211, 255,249,1);
 	float: left;
 }
 .playerX	{
 	background:url("../svg/x_1.svg");
-	background-color: lightblue;
+	background-color: rgba(66,119,153,0.7);
+	border: 3px solid darkgrey;
 }
 
 .playerY {
 	background:url("../svg/o.svg");
-	background-color: lightred;
+	background-color: rgba(204,149,149,0.7);
+	border: 3px solid darkgrey;
 }
 .sidebar {
 	border:1px solid blue;
@@ -40,13 +45,15 @@ h1 {
 .titlebox {
 	text-align: center;
 	margin:0 auto;
+	background-color: darkgrey;
 }
 
 .coverAll {
 	position: absolute;
 	top: 100px;
+	left: 30%;
 	border: 5px solid lightgrey;
-	border-radius: 10px;
+	border-radius: 15px;
 	width: 600px;
 	height: 600px;
 	background-color: white;
@@ -54,8 +61,8 @@ h1 {
 	opacity: 1;
 }
 .row {
-	height:120px;
-	width: 120px;
+	height:200px;
+	width: 200px;
 	margin: 0 auto;	
 	float:left;
 }

@@ -4,8 +4,8 @@ TTAPP.controller('gameCtrl', function($scope, $firebase) {
 
 
 var TTTRef = new Firebase("https://tickitytackityt0.firebaseio.com") ;
-$scope.fireBaseBoard = $firebase(new Firebase("https://tickitytackityt0.firebaseio.com" + "/testBoard"));
-$scope.firePlayerNames = $firebase(new Firebase("https://tickitytackityt0.firebaseio.com" + "/playerNames"));
+// $scope.fireBaseBoard = $firebase(new Firebase("https://tickitytackityt0.firebaseio.com" + "/testBoard"));
+// $scope.firePlayerNames = $firebase(new Firebase("https://tickitytackityt0.firebaseio.com" + "/playerNames"));
 
 // use this instead of boardArray for firebase binding.  make a watch feature on this to change the boardArray.
 $scope.testBoard = [
@@ -58,7 +58,7 @@ $scope.addNames = function(xName, yName){
   $scope.playerOName = yName;
   $scope.xyName = true; // this binds with nghide to hide the name box.
   //Firebase goodness
-  $scope.firePlayerNames.$set({PlayerX: $scope.playerXName, PlayerO: $scope.playerOName});
+  // $scope.firePlayerNames.$set({PlayerX: $scope.playerXName, PlayerO: $scope.playerOName});
 };
 
 
@@ -86,7 +86,7 @@ $scope.addNames = function(xName, yName){
         $scope.playcounter += 1;
     }  
       // idk if this is right
-      $scope.fireBaseBoard.$set($scope.testBoard);
+      // $scope.fireBaseBoard.$set($scope.testBoard);
   } ;
 
 
