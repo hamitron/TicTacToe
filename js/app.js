@@ -37,7 +37,7 @@ $scope.boardArray = [
 
   //These arrays hold the values of chosen cells
   //counts up after every space choice. except choices that are already occupied
-  $scope.playcounter = 0;
+$scope.playcounter = 0;
 
 $scope.whosTurn = function(){
   if ($scope.playcounter % 2 == 0){
@@ -87,10 +87,10 @@ $scope.addNames = function(xName, yName){
         $scope.playcounter += 1;
     }  
       // idk if this is right
-      $scope.fireBaseBoard.$set($scope.testBoard);
-      $scope.fireBaseBoard.$watch($scope.testBoard);
-      $scope.fireBoardArray.$set($scope.testBoard);
-      $scope.fireBoardArray.$watch($scope.boardArray);
+      // $scope.fireBaseBoard.$set($scope.testBoard);
+      // $scope.fireBaseBoard.$bind($scope.testBoard);
+      // $scope.fireBoardArray.$set($scope.testBoard);
+      // $scope.fireBoardArray.$bind($scope.boardArray);
   } ;
 
 
