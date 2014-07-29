@@ -167,7 +167,7 @@ $scope.winScenario = function(x,y) {
                   // cats game
       } else if ( $scope.playcounter == 8) {
                   $scope.gameEnd = true;
-                  $scope.outcome = "Cat's Game!";
+                  $scope.outcome = "Cats Game";
                   console.log("Cat's Game");
     };
     
@@ -179,6 +179,7 @@ $scope.winScenario = function(x,y) {
 // }
 
 $scope.boardReset= function() {
+    $scope.outcome = 'Wins!';
     for (var i = 0; i <= 8; i++){
     $scope.boardArray[i].chosen = false;
     $scope.boardArray[i].status = null;

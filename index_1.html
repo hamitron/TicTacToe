@@ -16,7 +16,7 @@
 
 <div class="titlebox"> <h1> TIC TAC TOE!!</h1>
 	<p ng-hide="gameEnd"><span ng-hide="oTurn">{{playerXName}}</span><span ng-show="oTurn">{{playerOName}}</span><span ng-show="xyName">'s turn</span></p>
-	<p ng-show="gameEnd"><span ng-hide="oTurn">{{playerXName}}</span><span ng-show="oTurn">{{playerOName}}</span> <span ng-model="outcome">{{outcome}}</span> </p>
+	<p ng-show="gameEnd"><span ng-hide="oTurn || outcome == 'Cats Game'">{{playerXName}}</span><span ng-show="oTurn" ng-hide="outcome == 'Cats Game'">{{playerOName}}</span> <span ng-model="outcome">{{outcome}}</span> </p>
 </div>
 <div class="outerContainer">
 		
