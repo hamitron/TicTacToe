@@ -46,12 +46,14 @@ $scope.whosTurn = function(){
         $scope.oTurn = false;
   }
 //hides player turn container.  will replace with winning player.
-   if ($scope.playcounter < 8){
-      $scope.gameEnd = false;
-    } else {
+   if ($scope.playcounter >= 8){
       $scope.gameEnd = true;
+    } else {
+      $scope.gameEnd = false;
     }
-    
+    // if ($scope.gameEnd == true) {
+
+    // }
 };
 
 $scope.addNames = function(xName, yName){
@@ -93,6 +95,7 @@ $scope.addNames = function(xName, yName){
       // $scope.fireBoardArray.$bind($scope.boardArray);
   } ;
 
+$scope.outcome = 'Wins!';
 
 $scope.winScenario = function(x,y) {
   if (x == null) {
@@ -114,43 +117,57 @@ $scope.winScenario = function(x,y) {
   //checks rows for winner
             if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerXWins ||
                ( $scope.testBoard[c][r] + $scope.testBoard[c+1][r] + $scope.testBoard[c+2][r]) == playerOWins)  {
-                console.log("we have a winner")
+                $scope.gameEnd = true;
+               
 
       } else if (($scope.testBoard[c][r+1] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+1]) == playerXWins ||
                 ( $scope.testBoard[c][r+1] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+1]) == playerOWins) {
                   console.log("we have a winner row 2");
+                  $scope.gameEnd = true;
+                 
 
       } else if (($scope.testBoard[c][r+2] + $scope.testBoard[c+1][r+2] + $scope.testBoard[c+2][r+2]) == playerXWins ||
                 ( $scope.testBoard[c][r+2] + $scope.testBoard[c+1][r+2] + $scope.testBoard[c+2][r+2]) == playerOWins) {
                   console.log("we have a winner row 3");
-
+                  $scope.gameEnd = true;
+                 
 
   // checks columns for winner
       } else if (($scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerXWins ||
                 ( $scope.testBoard[c][r] + $scope.testBoard[c][r+1] + $scope.testBoard[c][r+2]) == playerOWins){
                   console.log("Veritcal winner"); 
+                  $scope.gameEnd = true;
+                 
 
       } else if (($scope.testBoard[c+1][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+1][r+2]) == playerXWins ||
                 ( $scope.testBoard[c+1][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+1][r+2]) == playerOWins) {
                   console.log("Vertical winner column 2");
+                  $scope.gameEnd = true;
+                 
+
 
       } else if (($scope.testBoard[c+2][r] + $scope.testBoard[c+2][r+1] + $scope.testBoard[c+2][r+2]) == playerXWins ||
                 ( $scope.testBoard[c+2][r] + $scope.testBoard[c+2][r+1] + $scope.testBoard[c+2][r+2]) == playerOWins) {
                   console.log("Vertical winner column 3");
-
-
+                  $scope.gameEnd = true;
+                 
                 // checks diag for winner
       } else if (($scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerXWins ||
                 ( $scope.testBoard[c][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c+2][r+2]) == playerOWins){ 
                   console.log("DIagWIN");
+                  $scope.gameEnd = true;
+                 
 
       } else if (($scope.testBoard[c+2][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c][r+2]) == playerXWins ||
                 ( $scope.testBoard[c+2][r] + $scope.testBoard[c+1][r+1] + $scope.testBoard[c][r+2]) == playerOWins){ 
                   console.log("Diag Win");
+                  $scope.gameEnd = true;
+                 
 
                   // cats game
       } else if ( $scope.playcounter == 8) {
-
+                  $scope.gameEnd = true;
+                  $scope.outcome = "Cat's Game!";
                   console.log("Cat's Game");
     };
     
@@ -161,8 +178,18 @@ $scope.winScenario = function(x,y) {
 }
 // }
 
-$scope.showBoardWinner = function(winner) {
-
+$scope.boardReset= function() {
+    for (var i = 0; i <= 8; i++){
+    $scope.boardArray[i].chosen = false;
+    $scope.boardArray[i].status = null;
+    $scope.playcounter = 0;
+    $scope.gameEnd = false;
+  }
+    $scope.testBoard = [
+                    [" "," "," "],
+                    [" "," "," "],
+                    [" "," "," "]
+            ];
 }
 
 
