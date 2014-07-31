@@ -9,11 +9,7 @@ $scope.fireBoardArray = $firebase(new Firebase("https://tickitytackityt0.firebas
 $scope.firePlayerNames = $firebase(new Firebase("https://tickitytackityt0.firebaseio.com" + "/playerNames"));
 
 // use this instead of boardArray for firebase binding.  make a watch feature on this to change the boardArray.
-$scope.testBoard = [
-                    [" "," "," "],
-                    [" "," "," "],
-                    [" "," "," "]
-];
+
 
 $scope.createBoard = function(size) {
     // create a tic tac toe board using the argument size for width and height
@@ -37,14 +33,25 @@ $scope.boardArray = [
 
   //These arrays hold the values of chosen cells
   //counts up after every space choice. except choices that are already occupied
-$scope.playcounter = 0;
+
+$scope.boardReset= function() {
+    $scope.oTurn = false;
+    $scope.outcome = " ";
+    for (var i = 0; i <= 8; i++){
+    $scope.boardArray[i].chosen = false;
+    $scope.boardArray[i].status = null;
+    $scope.playcounter = 0;
+    $scope.gameEnd = false;
+  }
+    $scope.testBoard = [
+                    [" "," "," "],
+                    [" "," "," "],
+                    [" "," "," "]
+            ];
+}
+
 
 $scope.whosTurn = function(){
-  if ($scope.playcounter % 2 == 0){
-    $scope.oTurn = true;
-  } else {
-        $scope.oTurn = false;
-  }
 //hides player turn container.  will replace with winning player.
    if ($scope.playcounter >= 8){
       $scope.gameEnd = true;
@@ -62,40 +69,40 @@ $scope.addNames = function(xName, yName){
   $scope.xyName = true; // this binds with nghide to hide the name box.
   //Firebase goodness
   $scope.firePlayerNames.$set({PlayerX: $scope.playerXName, PlayerO: $scope.playerOName});
+  $scope.boardReset()
+
 };
 
 
   $scope.playerPicks = function(thisCell) {
    // determines if space has already been chosen or not.  If chosen it adds 0 to the playcounter.
-    $scope.whosTurn();
+    
     if (thisCell.chosen == true){
       console.log("Can't pick that one, " + thisCell.status + " is already there.");
-
-    } else {
-      if ($scope.playcounter % 2 == 0){
+    } else if ($scope.playcounter % 2 == 0){
+        $scope.whosTurn()
+        $scope.oTurn = true;
         thisCell.status = "X" ;
         thisCell.chosen = true;
+        $scope.outcome = "X Wins"
         $scope.testBoard[thisCell.idx][thisCell.idy] = "X";
         $scope.winScenario();
         // console.log("X pushed to " + thisCell.idx +" "+ thisCell.idy)
-        } else {
+    } else if ($scope.playcounter % 2 == 1){
+          $scope.whosTurn()
+          $scope.oTurn = false;
           thisCell.status = "O";
           thisCell.chosen = true;
+          $scope.outcome = "O Wins"
           $scope.testBoard[thisCell.idx][thisCell.idy] = "O";
           $scope.winScenario();
           // console.log("O pushed to " + thisCell.idx +" "+ thisCell.idy)
           
       }
-        $scope.playcounter += 1;
-    }  
-      // idk if this is right
-      // $scope.fireBaseBoard.$set($scope.testBoard);
-      // $scope.fireBaseBoard.$bind($scope.testBoard);
-      // $scope.fireBoardArray.$set($scope.testBoard);
-      // $scope.fireBoardArray.$bind($scope.boardArray);
+      
+      $scope.playcounter +=1;
+  
   } ;
-
-$scope.outcome = 'Wins!';
 
 $scope.winScenario = function(x,y) {
   if (x == null) {
@@ -178,20 +185,6 @@ $scope.winScenario = function(x,y) {
 }
 // }
 
-$scope.boardReset= function() {
-    $scope.outcome = 'Wins!';
-    for (var i = 0; i <= 8; i++){
-    $scope.boardArray[i].chosen = false;
-    $scope.boardArray[i].status = null;
-    $scope.playcounter = 0;
-    $scope.gameEnd = false;
-  }
-    $scope.testBoard = [
-                    [" "," "," "],
-                    [" "," "," "],
-                    [" "," "," "]
-            ];
-}
 
 
 
